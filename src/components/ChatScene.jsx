@@ -69,28 +69,28 @@ function ChatScene({ onContinue }) {
 
       <div className="chat-box">
         {messageStep >= 1 && (
-          <div className="message left">
-            Hey 👋
+          <div className="message right">
+            mila koi ladka? 😁
           </div>
         )}
 
         {messageStep >= 2 && (
-          <div className="message right">
-            Hi 😊
+          <div className="message left">
+            nahi,  abhi tk to nahi. kyu tum dance kroge ?
           </div>
         )}
 
         {messageStep >= 3 && (
-          <div className="message left">
-            How was your day?
+          <div className="message right">
+            nahi mai to bas puch rha tha
           </div>
         )}
 
         {messageStep >= 4 && (
-          <div className="message right">
-            Better now...
-            <br />
-            You're here ❤️
+          <div className="message left">
+            kr lo n 
+            
+          
           </div>
         )}
 

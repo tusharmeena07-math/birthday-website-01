@@ -11,7 +11,9 @@ export default function Layout({ children }) {
         animate="visible"
         exit="exit"
       >
-        {children}
+        <div className="page-content">
+    {children}
+</div>
       </motion.div>
     </section>
   );

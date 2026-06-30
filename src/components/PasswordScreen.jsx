@@ -7,7 +7,7 @@ function PasswordScreen({
 }) {
   return (
     <Layout>
-      <h1>✨ A Secret Universe ✨</h1>
+      <h1>✨For my love ✨</h1>
 
       <p>
         A universe created for one special person.

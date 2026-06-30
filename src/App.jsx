@@ -13,15 +13,59 @@ import Ending from "./components/Ending";
 import Background from "./components/Background";
 
 function App() {
+  // -------------------------
+  // Audio
+  // -------------------------
+
   const audioRef = useRef(null);
 
-  const [page, setPage] = useState("password");
+  const [isPlaying, setIsPlaying] =
+    useState(false);
 
-  const [password, setPassword] = useState("");
+  // Start music once
 
-  const [isPlaying, setIsPlaying] = useState(false);
+  function startMusic() {
+    if (!audioRef.current || isPlaying)
+      return;
 
+    audioRef.current.volume = 0.15;
 
+    audioRef.current
+      .play()
+      .catch(() => {});
+
+    setIsPlaying(true);
+  }
+
+  // Toggle play / pause
+
+  function playMusic() {
+    if (!audioRef.current) return;
+
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current
+        .play()
+        .catch(() => {});
+    }
+
+    setIsPlaying(!isPlaying);
+  }
+
+  // -------------------------
+  // Navigation
+  // -------------------------
+
+  const [page, setPage] =
+    useState("password");
+
+  const [password, setPassword] =
+    useState("");
+
+  // -------------------------
+  // Letter
+  // -------------------------
 
   const letter = `
 Your letter will appear here...
@@ -31,27 +75,36 @@ This is just a placeholder.
 Later we will replace it with your real letter ❤️
 `;
 
-  const playMusic = () => {
-    if (!isPlaying) {
-      audioRef.current.play().catch(() => {});
-      setIsPlaying(true);
-    } else {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    }
-  };
+  // -------------------------
+  // Render
+  // -------------------------
 
   return (
     <>
+      <Background />
+
+      <audio
+        ref={audioRef}
+        src="/music/perfect.mp3"
+        preload="auto"
+        playsInline
+        loop
+      />
+
       {page === "password" && (
         <PasswordScreen
           password={password}
           setPassword={setPassword}
           onUnlock={() => {
-            if (password === "starlight") {
+            if (
+              password ===
+              "starlight"
+            ) {
               setPage("welcome");
             } else {
-              alert("Wrong Password ❤️");
+              alert(
+                "Wrong Password ❤️"
+              );
             }
           }}
         />
@@ -59,19 +112,26 @@ Later we will replace it with your real letter ❤️
 
       {page === "welcome" && (
         <WelcomeScreen
-          onContinue={() => setPage("chapter1")}
+          onContinue={() => {
+            startMusic();
+            setPage("chapter1");
+          }}
         />
       )}
 
       {page === "chapter1" && (
         <ChapterOne
-          onContinue={() => setPage("chat")}
+          onContinue={() =>
+            setPage("chat")
+          }
         />
       )}
 
       {page === "chat" && (
         <ChatScene
-          onContinue={() => setPage("narration")}
+          onContinue={() =>
+            setPage("narration")
+          }
         />
       )}
 
@@ -79,36 +139,40 @@ Later we will replace it with your real letter ❤️
         <Narration
           isPlaying={isPlaying}
           onMusicToggle={playMusic}
-          onContinue={() => setPage("timeline")}
+          onContinue={() =>
+            setPage("timeline")
+          }
         />
       )}
 
       {page === "timeline" && (
         <Timeline
-          onContinue={() => setPage("gallery")}
+          onContinue={() =>
+            setPage("gallery")
+          }
         />
       )}
 
       {page === "gallery" && (
         <Gallery
-          onContinue={() => setPage("letter")}
+          onContinue={() =>
+            setPage("letter")
+          }
         />
       )}
 
       {page === "letter" && (
         <Letter
-  letter={letter}
-  onFinish={() => setPage("ending")}
-/>
+          letter={letter}
+          onFinish={() =>
+            setPage("ending")
+          }
+        />
       )}
 
-      {page === "ending" && <Ending />}
-<Background />
-      <audio
-        ref={audioRef}
-        src="/music/perfect.mp3"
-        loop
-      />
+      {page === "ending" && (
+        <Ending />
+      )}
     </>
   );
 }
