@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 import Layout from "./Layout";
+import ImageModal from "./ImageModal";
 
 const photos = [
   "/photos/photo1.jpg",
@@ -14,6 +17,49 @@ const photos = [
 ];
 
 function Gallery({ onContinue }) {
+  // -------------------------
+  // State
+  // -------------------------
+
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  // -------------------------
+  // Current Image Index
+  // -------------------------
+
+  const currentIndex = photos.indexOf(selectedImage);
+
+  // -------------------------
+  // Navigation
+  // -------------------------
+
+  function nextImage() {
+    if (currentIndex === -1) return;
+
+    const nextIndex =
+      (currentIndex + 1) % photos.length;
+
+    setSelectedImage(
+      photos[nextIndex]
+    );
+  }
+
+  function prevImage() {
+    if (currentIndex === -1) return;
+
+    const prevIndex =
+      (currentIndex - 1 + photos.length) %
+      photos.length;
+
+    setSelectedImage(
+      photos[prevIndex]
+    );
+  }
+
+  // -------------------------
+  // Render
+  // -------------------------
+
   return (
     <Layout>
       <h1>📸 Memory Gallery ❤️</h1>
@@ -25,9 +71,19 @@ function Gallery({ onContinue }) {
             src={photo}
             alt={`Memory ${index + 1}`}
             loading="lazy"
+            onClick={() => setSelectedImage(photo)}
           />
         ))}
       </div>
+
+      <ImageModal
+        image={selectedImage}
+        currentIndex={currentIndex}
+        totalImages={photos.length}
+        onClose={() => setSelectedImage(null)}
+        onNext={nextImage}
+        onPrev={prevImage}
+      />
 
       <button onClick={onContinue}>
         One Last Thing ❤️
