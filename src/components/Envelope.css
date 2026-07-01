@@ -4,8 +4,8 @@
 
 .animated-envelope {
   position: relative;
-  width: 320px;
-  height: 220px;
+  width: 260px;
+  height: 180px;
   margin: 60px auto;
   cursor: pointer;
   perspective: 1200px;
@@ -205,4 +205,35 @@ transform:none;
 
 }
 
+}
+
+@media (max-width: 768px) {
+
+  .animated-envelope,
+  .envelope {
+    width: 260px;
+    height: 180px;
+    margin: 20px auto;
+  }
+
+  .letter-paper {
+    width: 82%;
+    height: 85%;
+  }
+
+  .letter-paper.out {
+    transform: translate(-50%, -70%);
+  }
+
+  .letter-paper.open {
+    transform: translate(-50%, -82%) scaleY(1.05);
+  }
+
+  .hero-content {
+    padding: 28px 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.3rem;
+  }
 }

@@ -12,8 +12,6 @@ const photos = [
   "/photos/photo6.jpg",
   "/photos/photo7.jpg",
   "/photos/photo8.jpg",
-  "/photos/photo9.jpg",
-  "/photos/photo10.jpg",
 ];
 
 function Gallery({ onContinue }) {

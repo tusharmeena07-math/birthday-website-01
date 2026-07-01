@@ -6,29 +6,19 @@ function Ending() {
       <h1>🎂 Happy Birthday ❤️</h1>
 
       <p className="fade-text">
-        Thank you for being
+        Thank you for being a beautiful part of my universe. Some people become memories. Some become stories. And some become a little piece  of your heart forever.
         <br />
-        a beautiful part of my universe.
+        
       </p>
 
-      <p className="fade-text">
-        Some people become memories.
-      </p>
-
-      <p className="fade-text">
-        Some become stories.
-      </p>
-
-      <p className="fade-text">
-        And some become a little piece
-        <br />
-        of your heart forever.
-      </p>
+      
+      
+  
 
       <div className="signature">
         ✨ Made With Love ✨
-        <br />
-        by Tushar ❤️
+       
+        by your tulip ❤️
       </div>
     </Layout>
   );
